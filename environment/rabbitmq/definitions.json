@@ -1,0 +1,88 @@
+{
+    "users": [
+        {
+            "name": "tester",
+            "password": "strongPass",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "administrator"
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "HOST1"
+        },
+        {
+            "name": "HOST2"
+        }
+    ],
+    "queues": [
+        {
+            "name": "queue.something",
+            "vhost": "HOST1",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "queue.other",
+            "vhost": "HOST2",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "exchg.something",
+            "vhost": "HOST1",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "exchg.other",
+            "vhost": "HOST2",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "exchg.something",
+            "vhost": "HOST1",
+            "destination": "queue.something",
+            "destination_type": "queue",
+            "routing_key": "routingkey.something",
+            "arguments": {}
+        },
+        {
+            "source": "exchg.other",
+            "vhost": "HOST2",
+            "destination": "queue.other",
+            "destination_type": "queue",
+            "routing_key": "routingkey.other",
+            "arguments": {}
+        }
+    ],
+    "permissions": [
+        {
+            "user": "tester",
+            "vhost": "HOST1",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "tester",
+            "vhost": "HOST2",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ]
+}
